@@ -167,6 +167,6 @@ For GitHub, extract the ZIP and upload the **six entries shown above** at the re
 
 ## Technical references
 
-Oracle, *MySQL 8.4 Reference Manual: Using Roles*, accessed 9 November 2026: https://dev.mysql.com/doc/refman/8.4/en/roles.html
+Oracle, *MySQL 8.4 Reference Manual: Using Roles*, accessed 2 November 2026: https://dev.mysql.com/doc/refman/8.4/en/roles.html
 
-Oracle, *MySQL 8.4 Reference Manual: CHECK Constraints*, accessed 9 November 2026: https://dev.mysql.com/doc/refman/8.4/en/create-table-check-constraints.html
+Oracle, *MySQL 8.4 Reference Manual: CHECK Constraints*, accessed 5 November 2026: https://dev.mysql.com/doc/refman/8.4/en/create-table-check-constraints.html
