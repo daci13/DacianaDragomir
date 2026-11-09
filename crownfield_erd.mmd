@@ -1,0 +1,98 @@
+erDiagram
+    PATIENT ||--o{ APPOINTMENT : attends
+    SPECIALTY o|--o{ CLINICIAN : primary_specialty
+    CLINICIAN ||--o{ APPOINTMENT : conducts
+    CLINIC ||--o{ APPOINTMENT : hosts
+    APPOINTMENT ||--o{ DIAGNOSIS : records
+    APPOINTMENT ||--o| FOLLOW_UP : generates
+    APPOINTMENT ||--o{ PRESCRIPTION : produces
+    PRESCRIPTION ||--o{ PRESCRIPTION_ITEM : contains
+    MEDICINE ||--o{ PRESCRIPTION_ITEM : selected_for
+    APPOINTMENT ||--o{ APPOINTMENT_STATUS_AUDIT : audited_by
+    PATIENT ||--o| DEMO_PROTECTED_TOKEN : protects
+    PATIENT {
+        varchar_10 Patient_ID PK
+        varchar_60 First_Name
+        varchar_60 Last_Name
+        date Date_Of_Birth
+        varchar_25 Phone
+        varchar_120 Email UK
+        varchar_80 City
+        varchar_10 Postcode
+    }
+    SPECIALTY {
+        int Specialty_ID PK
+        varchar_100 Specialty_Name UK
+    }
+    CLINICIAN {
+        int Clinician_ID PK
+        varchar_60 First_Name
+        varchar_60 Last_Name
+        int Specialty_ID FK
+        varchar_120 Email UK
+    }
+    CLINIC {
+        int Clinic_ID PK
+        varchar_120 Clinic_Name
+        varchar_140 Hospital_Name
+        varchar_80 City
+        varchar_40 Country
+    }
+    MEDICINE {
+        int Medicine_ID PK
+        varchar_100 Medicine_Name UK
+        varchar_50 Form
+    }
+    APPOINTMENT {
+        int Appointment_ID PK
+        varchar_10 Patient_ID FK
+        int Clinician_ID FK
+        int Clinic_ID FK
+        date Appointment_Date
+        time Appointment_Time
+        varchar_50 Appointment_Type
+        varchar_20 Status
+        text Notes
+    }
+    DIAGNOSIS {
+        int Diagnosis_ID PK
+        int Appointment_ID FK
+        varchar_120 Diagnosis_Name
+        varchar_250 Diagnosis_Notes
+    }
+    PRESCRIPTION {
+        int Prescription_ID PK
+        int Appointment_ID FK
+        date Issued_Date
+        varchar_250 Instructions
+    }
+    PRESCRIPTION_ITEM {
+        int Prescription_Item_ID PK
+        int Prescription_ID FK
+        int Medicine_ID FK
+        int Quantity
+        varchar_100 Dose
+        varchar_50 Route
+        varchar_100 Frequency
+        varchar_50 Duration
+    }
+    FOLLOW_UP {
+        int Follow_Up_ID PK
+        int Appointment_ID FK, UK
+        date Follow_Up_Date
+        varchar_250 Plan
+        varchar_20 Priority
+        varchar_20 Status
+    }
+    APPOINTMENT_STATUS_AUDIT {
+        bigint Audit_ID PK
+        int Appointment_ID FK
+        varchar_20 Old_Status
+        varchar_20 New_Status
+        timestamp Changed_At
+    }
+    DEMO_PROTECTED_TOKEN {
+        int Token_ID PK
+        varchar_10 Patient_ID FK, UK
+        char_64 Token_Hash
+    }
